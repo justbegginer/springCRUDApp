@@ -21,4 +21,9 @@ public class PeopleController {
         return "people/allPersons";
     }
 
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") int id, Model model) {
+        model.addAttribute("currentPerson", personsDAO.getPerson(id));
+        return "people/person";
+    }
 }
