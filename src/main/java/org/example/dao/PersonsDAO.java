@@ -25,4 +25,7 @@ public class PersonsDAO {
                 .findFirst()
                 .orElse(null);
     }
+    public void add(Person person){
+        persons.add(person);
+    }
 }
