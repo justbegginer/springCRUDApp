@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,6 +8,9 @@
 <center>
     <h2 th:text="${currentPerson.getFirstName()}"></h2>
     <h1 th:text="${currentPerson.getSecondName()}"></h1>
+    <a th:href="@{/people/{id}/edit(id=${currentPerson.getId()})}">Edit</a>
+    <br>
+    <a th:href="@{/people/{id}/delete(id=${currentPerson.getId()})}">Delete</a>
 </center>
 </body>
 </html>
