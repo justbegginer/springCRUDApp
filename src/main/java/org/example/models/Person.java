@@ -32,4 +32,16 @@ public class Person {
     public String getSecondName() {
         return secondName;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
 }

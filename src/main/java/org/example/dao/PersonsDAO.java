@@ -28,4 +28,7 @@ public class PersonsDAO {
     public void add(Person person){
         persons.add(person);
     }
+    public void update(Person person, int id){
+        persons.set(id, person);
+    }
 }
