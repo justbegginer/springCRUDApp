@@ -1,11 +1,13 @@
 package org.example.controllers;
 
 
+import jakarta.validation.Valid;
 import org.example.dao.PersonsDAO;
 import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -27,13 +29,14 @@ public class PeopleController {
     }
 
     @GetMapping("/new")
-    public String getNewPerson(){
+    public String getNewPerson(Model model)
+    {
+        model.addAttribute("person", new Person(null, null));
         return "people/new";
     }
     @PostMapping
-    public String createNewPerson(@RequestParam("name") String name,
-                                  @RequestParam("surname") String surname){
-        personsDAO.add(new Person(name, surname));
+    public String createNewPerson(@ModelAttribute("person") Person person){
+        personsDAO.add(person);
         return "redirect:/people";
     }
 
