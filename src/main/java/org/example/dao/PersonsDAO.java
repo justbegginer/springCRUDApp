@@ -31,4 +31,10 @@ public class PersonsDAO {
     public void update(Person person, int id){
         persons.set(id, person);
     }
+    public void delete(int id){
+        persons.remove(id);
+        for (int i = id; i < persons.size(); i++) {
+            persons.get(i).setId(i);
+        }
+    }
 }
