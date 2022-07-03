@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 
 public class Person {
     private int id;
@@ -54,5 +56,10 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 '}';
+    }
+    public boolean equal(Person anotherPerson){
+        return  anotherPerson.getId() == this.getId() &&
+                Objects.equals(anotherPerson.getFirstName(), this.getFirstName()) &&
+                Objects.equals(anotherPerson.getSecondName(), this.getSecondName());
     }
 }
