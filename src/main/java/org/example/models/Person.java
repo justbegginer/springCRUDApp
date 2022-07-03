@@ -17,6 +17,8 @@ public class Person {
         this.secondName = secondName;
     }
 
+    public Person(){}
+
     public int getId() {
         return id;
     }
@@ -43,5 +45,14 @@ public class Person {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                '}';
     }
 }
