@@ -9,12 +9,10 @@ import java.util.Objects;
 
 public class Person {
     private int id;
-    private static int idCounter = 0;
     private String firstName;
     private String secondName;
-    public Person(String firstName, String secondName){
-        this.id = Person.idCounter;
-        Person.idCounter++;
+    public Person(int id, String firstName, String secondName){
+        this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
     }
@@ -23,10 +21,6 @@ public class Person {
 
     public int getId() {
         return id;
-    }
-
-    public static int getIdCounter() {
-        return idCounter;
     }
 
     public String getFirstName() {
