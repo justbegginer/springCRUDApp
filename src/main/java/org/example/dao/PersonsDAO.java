@@ -18,12 +18,9 @@ public class PersonsDAO {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(Property.URL, Property.User, Property.Password);
             // Property is a class of static fields in what contains sources of DB
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(connection != null);
     }
 
     public List<Person> getAllPersons() {
@@ -47,13 +44,14 @@ public class PersonsDAO {
     }
 
     public Person getPerson(int id) {
-        Statement statement = null;
+        PreparedStatement statement = null;
         Person person = new Person();
         try {
-            statement = connection.createStatement();
             String query = "SELECT * FROM Person " +
-                    "WHERE id =" + id + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+                    "WHERE id = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             person.setFirstName(resultSet.getString("name"));
             person.setSecondName(resultSet.getString("surname"));
@@ -65,24 +63,29 @@ public class PersonsDAO {
     }
 
     public void add(Person person) {
-        Statement statement = null;
+        PreparedStatement statement = null;
         try {
-            statement = connection.createStatement();
-            String query = "INSERT INTO person VALUES (default, '" + person.getFirstName() + "', '" + person.getSecondName() + "');";
-            statement.executeUpdate(query);
+            String query = "INSERT INTO person VALUES (default, ?, ?);";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, person.getFirstName());
+            statement.setString(2, person.getSecondName());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void update(Person person, int id) {
-        Statement statement = null;
+        PreparedStatement statement = null;
         try {
-            statement = connection.createStatement();
             String query = "UPDATE person "+
-                    "SET name = '"+person.getFirstName()+"', surname = '"+person.getSecondName()+"' " +
-                    "WHERE id ="+id+";";
-            statement.executeUpdate(query);
+                    "SET name = ?, surname = ? "+
+                    "WHERE id = ?;";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, person.getFirstName());
+            statement.setString(2, person.getSecondName());
+            statement.setInt(3, person.getId());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,12 +93,13 @@ public class PersonsDAO {
     }
 
     public void delete(int id) {
-        Statement statement = null;
+        PreparedStatement statement = null;
         try {
-            statement = connection.createStatement();
             String query = "DELETE FROM person "+
-                    "WHERE id = "+id+" ;";
-            statement.executeUpdate(query);
+                    "WHERE id = ? ;";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
