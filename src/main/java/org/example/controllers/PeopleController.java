@@ -1,7 +1,6 @@
 package org.example.controllers;
 
 
-import jakarta.validation.Valid;
 import org.example.dao.PersonsDAO;
 import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +30,11 @@ public class PeopleController {
     @GetMapping("/new")
     public String getNewPerson(Model model)
     {
-        model.addAttribute("person", new Person(null, null));
+        model.addAttribute("person", new Person());
         return "people/new";
     }
     @PostMapping
-    public String createNewPerson(@ModelAttribute("person") Person person){
+    public String createNewPerson(@ModelAttribute("person")  Person person){
         personsDAO.add(person);
         return "redirect:/people";
     }
