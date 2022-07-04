@@ -15,12 +15,15 @@ public class PersonsDAO {
 
     static {
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(Property.URL, Property.User, Property.Password);
             // Property is a class of static fields in what contains sources of DB
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-
+        System.out.println(connection != null);
     }
 
     public List<Person> getAllPersons() {
