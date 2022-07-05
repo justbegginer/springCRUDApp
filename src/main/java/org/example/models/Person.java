@@ -1,23 +1,32 @@
 package org.example.models;
 
+import jakarta.persistence.*;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
 
-
+@Entity
+@Table(name = "person")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "name")
     private String firstName;
+    @Column(name = "surname")
     private String secondName;
-    public Person(int id, String firstName, String secondName){
+
+    public Person(int id, String firstName, String secondName) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
     }
 
-    public Person(){}
+    public Person() {
+    }
 
     public int getId() {
         return id;
@@ -51,8 +60,9 @@ public class Person {
                 ", secondName='" + secondName + '\'' +
                 '}';
     }
-    public boolean equal(Person anotherPerson){
-        return  anotherPerson.getId() == this.getId() &&
+
+    public boolean equal(Person anotherPerson) {
+        return anotherPerson.getId() == this.getId() &&
                 Objects.equals(anotherPerson.getFirstName(), this.getFirstName()) &&
                 Objects.equals(anotherPerson.getSecondName(), this.getSecondName());
     }
