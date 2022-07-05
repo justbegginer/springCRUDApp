@@ -36,7 +36,7 @@ public class PersonsDAO {
         session.close();
     }
 
-    public void update(Person person, int id) {
+    public void update(Person person) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(person);
