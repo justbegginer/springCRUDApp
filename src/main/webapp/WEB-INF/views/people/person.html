@@ -6,8 +6,8 @@
 </head>
 <body>
 <center>
-    <h2 th:text="${currentPerson.getFirstName()}"></h2>
-    <h1 th:text="${currentPerson.getSecondName()}"></h1>
+    <h2 th:text="${currentPerson.getName()}"></h2>
+    <h1 th:text="${currentPerson.getSurname()}"></h1>
     <a th:href="@{/people/{id}/edit(id=${currentPerson.getId()})}">Edit</a>
     <br>
     <a th:href="@{/people/{id}/delete(id=${currentPerson.getId()})}">Delete</a>

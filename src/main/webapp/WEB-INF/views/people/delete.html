@@ -6,8 +6,8 @@
 </head>
 <body>
 <center>
-    <h2 th:text="${person.getFirstName()}"></h2>
-    <h1 th:text="${person.getSecondName()}"></h1>
+    <h2 th:text="${person.getName()}"></h2>
+    <h1 th:text="${person.getSurname()}"></h1>
     <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
         <input type="submit" value="DELETE">
     </form>

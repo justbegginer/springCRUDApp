@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
@@ -17,7 +19,11 @@ public class PeopleController {
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("people", personsDAO.getAllPersons());
+        List<Person> personList = personsDAO.getAllPersons();
+        model.addAttribute("people", personList);
+        for (int i = 0; i < personList.size(); i++) {
+            System.out.println(personList.get(i));
+        }
         return "people/allPersons";
     }
 

@@ -7,10 +7,10 @@
 <body>
 <form th:method="POST" th:action="@{/people}" th:object="${person}">
     <label for="name">First Name</label>
-    <input type="text" th:field="*{firstName}" id="name">
+    <input type="text" th:field="*{name}" id="name">
     <br>
     <label for="surname">Last Name</label>
-    <input th:field="*{secondName}" type="text" id="surname">
+    <input th:field="*{surname}" type="text" id="surname">
     <br>
     <input type="submit" value="ADD">
 </form>

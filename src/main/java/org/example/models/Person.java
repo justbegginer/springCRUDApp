@@ -14,15 +14,13 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name")
-    private String firstName;
-    @Column(name = "surname")
-    private String secondName;
+    private String name;
+    private String surname;
 
     public Person(int id, String firstName, String secondName) {
         this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
+        this.name = firstName;
+        this.surname = secondName;
     }
 
     public Person() {
@@ -32,38 +30,38 @@ public class Person {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getSurname() {
+        return surname;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setSurname(String secondName) {
+        this.surname = secondName;
     }
 
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
+                ", firstName='" + name + '\'' +
+                ", secondName='" + surname + '\'' +
                 '}';
     }
 
     public boolean equal(Person anotherPerson) {
         return anotherPerson.getId() == this.getId() &&
-                Objects.equals(anotherPerson.getFirstName(), this.getFirstName()) &&
-                Objects.equals(anotherPerson.getSecondName(), this.getSecondName());
+                Objects.equals(anotherPerson.getName(), this.getName()) &&
+                Objects.equals(anotherPerson.getSurname(), this.getSurname());
     }
 }
