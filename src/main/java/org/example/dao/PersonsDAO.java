@@ -21,7 +21,7 @@ public class PersonsDAO {
     }
 
     public List<Person> getAllPersons() {
-        return jdbcTemplate.query("SELECT * FROM Person", new PersonMapper());
+        return HibernateSessionFactory.getSessionFactory().openSession().createQuery("From Person").list();
     }
 
     public Person getPerson(int id) {
