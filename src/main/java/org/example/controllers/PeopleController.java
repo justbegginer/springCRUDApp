@@ -6,7 +6,6 @@ import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +20,6 @@ public class PeopleController {
     public String index(Model model) {
         List<Person> personList = personsDAO.getAllPersons();
         model.addAttribute("people", personList);
-        for (int i = 0; i < personList.size(); i++) {
-            System.out.println(personList.get(i));
-        }
         return "people/allPersons";
     }
 

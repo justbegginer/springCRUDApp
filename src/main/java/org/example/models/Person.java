@@ -1,10 +1,6 @@
 package org.example.models;
 
 import jakarta.persistence.*;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import java.util.Objects;
 

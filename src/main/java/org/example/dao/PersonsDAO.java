@@ -4,22 +4,12 @@ import org.example.models.HibernateSessionFactory;
 import org.example.models.Person;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
 import java.util.List;
 
 @Component
 public class PersonsDAO {
-    private static JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public PersonsDAO(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
     public List<Person> getAllPersons() {
         return HibernateSessionFactory.getSessionFactory().openSession().createQuery("From Person").list();
     }
